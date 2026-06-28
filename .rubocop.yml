@@ -1,0 +1,36 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'db/schema.rb'
+    - 'vendor/**/*'
+    - 'bin/**/*'
+    - 'db/migrate/*'
+
+Style/AsciiComments:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 15
+
+Metrics/ClassLength:
+  Max: 200
+
+# RSpec: 1つのitブロック内のアサーション（expect）の数制限を無効化
+RSpec/MultipleExpectations:
+  Enabled: false
+
+Layout/TrailingWhitespace:
+  Enabled: true
+
+Layout/TrailingEmptyLines:
+  Enabled: true
+
+Layout/EmptyLines:
+  Enabled: true
+
+Layout/ExtraSpacing:
+  Enabled: true

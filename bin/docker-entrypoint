@@ -1,0 +1,34 @@
+#!/bin/bash
+set -e
+
+bundle check || bundle install
+
+if [ -f /app/tmp/pids/server.pid ]; then
+  rm -f /app/tmp/pids/server.pid
+fi
+
+#  環境に応じたデータベースの初期化・更新処理
+if [ "$RAILS_ENV" = "development" ]; then
+  echo "--- 開発環境: データベースの準備中 (db:prepare) ---"
+  bundle exec rails db:prepare
+
+  echo "--- 開発環境: Tailwind CSS バイナリの同期中 ---"
+  bundle exec rails tailwindcss:install
+
+elif [ "$RAILS_ENV" = "production" ]; then
+  echo "--- 本番環境: マイグレーションを実行中 (db:migrate) ---"
+  # Neonなどの外部DBへの接続待ちを考慮し、最大5回リトライする安全設計
+  for i in {1..5}; do
+    bundle exec rails db:migrate && break
+    echo "データベースの準備ができていません。5秒後に再試行します... ($i/5)"
+    sleep 5
+  done
+
+  # 5回リトライしても失敗した場合は、異常終了させてコンテナを安全に止める
+  if [ $? -ne 0 ]; then
+    echo "❌ エラー: 本番環境のマイグレーションに失敗したため、起動を中止します。"
+    exit 1
+  fi
+fi
+
+exec "$@"
