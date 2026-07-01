@@ -1,0 +1,333 @@
+<!-- Hero Section -->
+<section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-surface z-10"></div>
+    <%= image_tag 'onsen-top-bg.webp' , alt: 'Luxury Japanese Super Sento indoor bath area' ,
+      class: 'w-full h-full object-cover' %>
+  </div>
+
+  <div class="relative z-20 max-w-5xl text-center px-margin-mobile">
+    <h1 class="font-display-lg text-display-lg md:text-6xl text-white mb-6 animate-fade-in drop-shadow-md">
+      一日中、極上の余暇を。</h1>
+    <p
+      class="font-body-lg text-body-lg text-white mb-12 max-w-3xl mx-auto leading-relaxed font-medium drop-shadow-sm">
+      多彩な湯船、贅沢な岩盤浴、本格グルメに癒やしのラウンジ。<br class="hidden md:block" />
+      心と体を解きほぐす「複合リラクゼーション空間」が、あなたを待っています。
+    </p>
+
+    <!-- Search Box -->
+    <div
+      class="bg-white/95 backdrop-blur-md p-2 rounded-full flex items-center shadow-xl border border-outline-variant/20 max-w-2xl mx-auto group focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+      <span class="material-symbols-outlined ml-4 text-outline">search</span>
+      <input
+        class="flex-grow bg-transparent border-none focus:ring-0 px-4 py-4 font-body-md text-body-md text-on-surface placeholder:text-outline/60"
+        placeholder="エリア、設備、キーワードで検索..." type="text" />
+      <button
+        class="bg-primary text-on-primary px-8 py-4 rounded-full font-bold hover:bg-primary-container transition-all">検索</button>
+    </div>
+
+    <!-- Popular Tags -->
+    <div class="mt-12 max-w-3xl mx-auto animate-fade-in" style="animation-delay: 0.4s;">
+      <h3 class="text-label-sm font-label-sm uppercase tracking-widest text-white/90 mb-4">人気のタグから探す</h3>
+      <div class="flex flex-wrap justify-center gap-3">
+        <%= link_to 'オートロウリュ' , '#' ,
+          class: 'bg-white/20 backdrop-blur-md border border-white/30 text-white px-5 py-2 rounded-full text-label-md font-label-md hover:bg-white hover:text-primary transition-all shadow-sm'
+          %>
+          <%= link_to '露天風呂' , '#' ,
+            class: 'bg-white/20 backdrop-blur-md border border-white/30 text-white px-5 py-2 rounded-full text-label-md font-label-md hover:bg-white hover:text-primary transition-all shadow-sm'
+            %>
+            <%= link_to '外気浴あり' , '#' ,
+              class: 'bg-white/20 backdrop-blur-md border border-white/30 text-white px-5 py-2 rounded-full text-label-md font-label-md hover:bg-white hover:text-primary transition-all shadow-sm'
+              %>
+              <%= link_to 'コワーキング' , '#' ,
+                class: 'bg-white/20 backdrop-blur-md border border-white/30 text-white px-5 py-2 rounded-full text-label-md font-label-md hover:bg-white hover:text-primary transition-all shadow-sm'
+                %>
+                <%= link_to '漫画1万冊以上' , '#' ,
+                  class: 'bg-white/20 backdrop-blur-md border border-white/30 text-white px-5 py-2 rounded-full text-label-md font-label-md hover:bg-white hover:text-primary transition-all shadow-sm'
+                  %>
+                  <%= link_to '本格サ飯' , '#' ,
+                    class: 'bg-white/20 backdrop-blur-md border border-white/30 text-white px-5 py-2 rounded-full text-label-md font-label-md hover:bg-white hover:text-primary transition-all shadow-sm'
+                    %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Super Sento (4 Pillars) -->
+<section class="py-24 bg-surface">
+  <div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="font-headline-md text-headline-md text-primary mb-4">究極の癒やし体験</h2>
+      <p class="font-body-md text-body-md text-on-surface-variant">スーパー銭湯で過ごす、至福の4つの柱。</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="flex flex-col items-center text-center group">
+        <div
+          class="w-20 h-20 rounded-full bg-primary-fixed mb-6 flex items-center justify-center transition-transform group-hover:-translate-y-1">
+          <span class="material-symbols-outlined text-primary text-4xl">hot_tub</span>
+        </div>
+        <h3 class="font-headline-sm text-lg mb-3">多彩な湯巡り</h3>
+        <p class="text-body-md text-on-surface-variant text-sm leading-relaxed">炭酸泉、露天風呂、電気風呂など、個性豊かな湯船で体の芯から温まります。
+        </p>
+      </div>
+
+      <div class="flex flex-col items-center text-center group">
+        <div
+          class="w-20 h-20 rounded-full bg-secondary-fixed mb-6 flex items-center justify-center transition-transform group-hover:-translate-y-1">
+          <span class="material-symbols-outlined text-secondary text-4xl">dry_cleaning</span>
+        </div>
+        <h3 class="font-headline-sm text-lg mb-3">岩盤浴 &amp; サウナ</h3>
+        <p class="text-body-md text-on-surface-variant text-sm leading-relaxed">デトックス効果抜群の岩盤浴と、こだわりの高温サウナで深い「整い」を。
+        </p>
+      </div>
+
+      <div class="flex flex-col items-center text-center group">
+        <div
+          class="w-20 h-20 rounded-full bg-tertiary-fixed mb-6 flex items-center justify-center transition-transform group-hover:-translate-y-1">
+          <span class="material-symbols-outlined text-on-tertiary-fixed-variant text-4xl">restaurant</span>
+        </div>
+        <h3 class="font-headline-sm text-lg mb-3">本格グルメ</h3>
+        <p class="text-body-md text-on-surface-variant text-sm leading-relaxed">
+          湯上がりに楽しむ、旬の食材を活かした和食からスイーツまで充実のラインナップ。</p>
+      </div>
+
+      <div class="flex flex-col items-center text-center group">
+        <div
+          class="w-20 h-20 rounded-full bg-surface-container-highest mb-6 flex items-center justify-center transition-transform group-hover:-translate-y-1">
+          <span class="material-symbols-outlined text-primary text-4xl">king_bed</span>
+        </div>
+        <h3 class="font-headline-sm text-lg mb-3">贅沢な休息</h3>
+        <p class="text-body-md text-on-surface-variant text-sm leading-relaxed">プレミアムラウンジや漫画コーナーで、時間を忘れてゆったりと過ごせます。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Editor's Picks (Bento Grid) -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+  <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+    <div>
+      <h2 class="font-headline-md text-headline-md text-primary mb-2">極上の複合施設セレクト</h2>
+      <p class="font-body-md text-body-md text-on-surface-variant">入浴、食事、休息のすべてが最高峰の施設を厳選。</p>
+    </div>
+    <%= link_to '#' , class: 'text-primary font-bold flex items-center gap-2 group' do %>
+      すべて見る
+      <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+      <% end %>
+  </div>
+
+  <div class="bento-grid">
+    <!-- Main Feature -->
+    <div
+      class="col-span-12 md:col-span-8 bg-white rounded-xl overflow-hidden group cursor-pointer border border-outline-variant/10 card-shadow relative min-h-[500px]">
+      <%= image_tag 'luxurious-complex-onsen-first.webp' , alt: 'Luxurious Complex Sento First' ,
+        class: 'absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105'
+        %>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-8 text-white z-10">
+          <div class="flex gap-2 mb-3">
+            <span
+              class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded text-label-sm font-label-sm uppercase">2024年ベスト選出</span>
+          </div>
+          <h3 class="font-headline-sm text-3xl mb-2">スパメッツァおおたか 竜泉寺の湯</h3>
+          <p class="font-body-md text-body-md opacity-90 max-w-md">
+            15種類の風呂、5種類のサウナ、そして圧倒的な広さを誇るラウンジ。一日中楽しめる究極のデスティネーション。</p>
+        </div>
+    </div>
+
+    <!-- Secondary Features -->
+    <div class="col-span-12 md:col-span-4 grid grid-rows-2 gap-6">
+      <div
+        class="bg-white rounded-xl overflow-hidden group cursor-pointer border border-outline-variant/10 card-shadow relative">
+        <%= image_tag 'luxurious-complex-onsen-second.webp' , alt: 'Luxurious Complex Sento Second' ,
+          class: 'absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105'
+          %>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-6 text-white z-10">
+            <h4 class="font-label-md text-label-md font-bold text-lg">万葉の湯</h4>
+            <p class="text-xs opacity-80">宿泊も可能な都市型リゾート</p>
+          </div>
+      </div>
+
+      <div
+        class="bg-white rounded-xl overflow-hidden group cursor-pointer border border-outline-variant/10 card-shadow relative">
+        <%= image_tag 'luxurious-complex—onsen-third.webp' , alt: 'Luxurious Complex Sento Third' ,
+          class: 'absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105'
+          %>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-6 text-white z-10">
+            <h4 class="font-label-md text-label-md font-bold text-lg">RAKU SPA</h4>
+            <p class="text-xs opacity-80">コミック&amp;カフェ併設の新世代型</p>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Relaxation Guide Section -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto overflow-hidden">
+  <div class="flex flex-col md:flex-row items-center gap-16">
+    <div class="md:w-1/2">
+      <span class="text-secondary font-bold tracking-widest text-xs uppercase mb-4 block">快適な一日の過ごし方</span>
+      <h2 class="text-4xl md:text-5xl text-primary mb-8 leading-tight">施設別・快適な<br />1日の過ごし方</h2>
+      <p class="text-lg text-on-surface-variant mb-10">スーパー銭湯は、手ぶらでふらっと立ち寄れるのが魅力。入店から退店まで、心地よい流れをご紹介します。</p>
+
+      <div class="space-y-8">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-on-secondary-fixed">assignment_ind</span>
+          </div>
+          <div>
+            <h4 class="text-on-surface font-bold mb-1">入館・手ぶらでOK <span
+                class="ml-2 text-[10px] bg-surface-container-highest text-on-surface-variant px-1.5 py-0.5 rounded">オプション</span>
+            </h4>
+            <p class="text-on-surface-variant text-sm">レンタルタオルや館内着が充実。リストバンド一つで館内の支払いが完結します。</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-on-secondary-fixed">spa</span>
+          </div>
+          <div>
+            <h4 class="text-on-surface font-bold mb-1">湯巡りと癒やしのループ <span
+                class="ml-2 text-[10px] text-outline font-normal">※施設により異なります</span></h4>
+            <p class="text-on-surface-variant text-sm">お風呂で温まり、岩盤浴で汗を流す。水分補給をしながら、自分のペースで繰り返しましょう。</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-on-secondary-fixed">coffee</span>
+          </div>
+          <div>
+            <h4 class="text-on-surface font-bold mb-1">贅沢なオフタイム <span
+                class="ml-2 text-[10px] text-outline font-normal">※設備は施設により異なります</span></h4>
+            <p class="text-on-surface-variant text-sm">食事の後は、リクライニングチェアや休憩スペースへ。漫画コーナーやコワーキングなど、各施設こだわりの空間で至福のひとときを。
+            </p>
+          </div>
+        </div>
+      </div>
+      <button
+        class="mt-12 border-2 border-secondary text-secondary px-8 py-3 rounded-full font-bold hover:bg-secondary hover:text-white transition-all">初めての方へのガイド</button>
+      <p class="mt-6 text-xs text-outline leading-relaxed">※設備内容やレンタル料金は施設によって異なります。詳細は各施設ページをご確認ください。</p>
+    </div>
+    <div class="md:w-1/2 relative">
+      <div class="relative z-10 rounded-2xl overflow-hidden aspect-[4/5] card-shadow">
+        <%= image_tag 'three-ways-to-have-fun.webp' , alt: 'Three Ways to Have Fun' ,
+          class: 'w-full h-full object-cover' %>
+      </div>
+      <div
+        class="absolute -bottom-8 -right-8 w-64 h-64 bg-secondary-container rounded-full -z-10 blur-3xl opacity-50">
+      </div>
+      <div class="absolute -top-8 -left-8 w-48 h-48 bg-primary-fixed rounded-full -z-10 blur-3xl opacity-30"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Recent Reviews -->
+<section class="bg-surface-container-low py-24">
+  <div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="font-headline-md text-headline-md text-primary mb-4">利用者の声</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+      <div class="bg-white p-8 rounded-xl border border-outline-variant/20 card-shadow flex flex-col">
+        <div class="flex items-center gap-1 text-secondary-fixed-dim mb-4">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+        </div>
+        <p class="font-headline-sm text-headline-sm text-primary mb-4 italic leading-relaxed">
+          「岩盤浴の種類が多くて最高。漫画も読み放題だし、もはや住みたいレベルです。」</p>
+        <div class="mt-auto pt-6 flex items-center justify-between border-t border-outline-variant/10">
+          <div>
+            <p class="font-label-md text-label-md text-on-surface">アレックス・チェン</p>
+            <p class="text-xs text-outline">場所：スパメッツァおおたか 竜泉寺の湯</p>
+          </div>
+          <img class="w-10 h-10 rounded-full border border-outline-variant/30"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFwPQiLlzVb_I95_DlXbm6cFPJm6d4_M7HYsB4vBt--IeExmaWbXQYGg5Xq0c9L166oHNeMMIDy4_VB2_D5YU_saehLou2Yb3CB9rrjeAEC4LMGgYdEkueFpxEFBCQm5AUuXUYJ9D79QJxIfoSV-fyC5zGiVTI5Z5GGYOKix48kuXtX6Yzs2nSN8--sU9pC71AMd1UHlgPxqYAAGMMj1o3rc706Mk0ZdJ_y1cwESxXmdt6ssaDGo-1zsxry-LqgQpjBbK3TGQmamk" />
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-xl border border-outline-variant/20 card-shadow flex flex-col">
+        <div class="flex items-center gap-1 text-secondary-fixed-dim mb-4">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined">star</span>
+        </div>
+        <p class="font-headline-sm text-headline-sm text-primary mb-4 italic leading-relaxed">
+          「食事がレストラン並みのクオリティ。湯上がりのクラフトビールが最高でした。」</p>
+        <div class="mt-auto pt-6 flex items-center justify-between border-t border-outline-variant/10">
+          <div>
+            <p class="font-label-md text-label-md text-on-surface">サラ・J</p>
+            <p class="text-xs text-outline">場所：万葉の湯</p>
+          </div>
+          <img class="w-10 h-10 rounded-full border border-outline-variant/30"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYOeQElkm-O7tDKW1StvPIWt1kAATUrGcAyZcrNAhtiRcrwn45Ko0_DHEavkOg1z1VGhu8J5ulK_79vc6AAnUwPvfEy_v0fBTBU9NgIHqOliuZDxiSI1ZJCCK5BXSZyoOA6-Ll8Piqvo5dW1zhgt51QBqtke0jRaYvVTHAJzAfnOeOlNdmCNq8y7PPYyaq4FgbusxJbuAipLMlUjGiKjo5_FLznBFPYBF05pqoteLUmxKq2ee762v6uTVdhdaWC40_LmMznUUm27c" />
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-xl border border-outline-variant/20 card-shadow flex flex-col">
+        <div class="flex items-center gap-1 text-secondary-fixed-dim mb-4">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+        </div>
+        <p class="font-headline-sm text-headline-sm text-primary mb-4 italic leading-relaxed">
+          「ワーケーションで利用。電源もあるし、疲れたらお風呂に入れるので捗ります。」</p>
+        <div class="mt-auto pt-6 flex items-center justify-between border-t border-outline-variant/10">
+          <div>
+            <p class="font-label-md text-label-md text-on-surface">佐藤 健二</p>
+            <p class="text-xs text-outline">場所：RAKU SPA</p>
+          </div>
+          <img class="w-10 h-10 rounded-full border border-outline-variant/30"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3CHUjtO317mbWANh0Jw-Y48rcXCy7y0-lKiQ7pmRBXw1EfOvM_93dZmWrpwzG5qPs2yIe1cGsd75yK-woAZA_qQgs5nvO3SWVmRSW4SVVRRbsnLkM4DhtWYizgG4dOu6LQAzSQ771htjBtPbzbzOqjb3eFO6RInDhRl33mPmT96sDDLG19t1KvkE4fKh_PGKI1qlPT_CCiUtBEA_gnMni6h5dGiwSWMYZxmsVYbPq2sTGyLnB1RfWzRLWED8z6exaYIaPXeVgvrw" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Temperature Selection Callout -->
+<section class="mb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+  <div class="bg-primary-container p-12 md:p-20 rounded-3xl relative overflow-hidden text-center text-on-primary">
+    <div
+      class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent">
+    </div>
+    <div class="relative z-10 max-w-2xl mx-auto">
+      <h2 class="font-headline-md text-headline-md mb-6">あなた好みの温度と設備を探す</h2>
+      <p class="font-body-md text-body-md mb-10 opacity-90">
+        15℃の水風呂から、45℃のあつ湯、そして50℃前後のじっくり温まる岩盤浴まで。あなたの今日の気分にぴったりの施設が見つかります。</p>
+      <div class="flex flex-col gap-6 mb-12">
+        <div class="flex justify-between text-label-sm font-label-sm uppercase tracking-widest opacity-80">
+          <span>低中温（岩盤浴・サウナ）</span>
+          <span>高温（天然温泉）</span>
+        </div>
+        <div class="heat-gauge w-full"></div>
+        <div class="flex justify-center gap-6 flex-wrap">
+          <span class="flex items-center gap-2 text-label-md">
+            <div class="w-3 h-3 rounded-full bg-surface"></div> 冷水風呂
+          </span>
+          <span class="flex items-center gap-2 text-label-md">
+            <div class="w-3 h-3 rounded-full bg-secondary-fixed"></div> 岩盤浴
+          </span>
+          <span class="flex items-center gap-2 text-label-md">
+            <div class="w-3 h-3 rounded-full bg-secondary"></div> 薬湯・高濃度炭酸泉
+          </span>
+        </div>
+      </div>
+      <button
+        class="bg-white text-primary px-10 py-4 rounded-full font-bold hover:scale-105 transition-all shadow-lg">設備・サービスから絞り込む</button>
+    </div>
+  </div>
+</section>
