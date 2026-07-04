@@ -1,0 +1,77 @@
+<div class="flex-grow flex items-center justify-center px-margin-mobile md:px-margin-desktop py-16">
+  <div class="w-full max-w-md mx-auto">
+    <div class="bg-surface-container-lowest border border-outline-variant/30 p-8 md:p-10 rounded-xl shadow-[0_4px_20px_rgba(26,35,126,0.05)]">
+      <div class="mb-10 text-center md:text-left">
+        <h2 class="text-headline-md text-primary mb-2">
+          <%= resource.new_record? ? "新規登録" : "プロフィール情報変更" %>
+        </h2>
+        <p class="text-body-md text-on-surface-variant">
+          <%= resource.new_record? ? "アカウントを作成して始めましょう。" : "詳細を入力してプロフィールを更新してください。" %>
+        </p>
+      </div>
+      <%= form_with model: resource, url: url, html: { class: "space-y-6", multipart: true } do |f| %>
+      <%= render 'shared/error_messages', object: resource %>
+        <div class="flex flex-col items-center mb-8" data-controller="avatar">
+          <div class="relative w-24 h-24">
+            <div class="group cursor-pointer w-full h-full rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border-2 border-outline-variant hover:border-primary-container transition-all relative" data-action="click->avatar#openFileWindow">
+              <% if resource.avatar.attached? && resource.avatar.persisted? %>
+                <span class="material-symbols-outlined text-outline text-4xl" data-avatar-target="placeholder">account_circle</span>
+                <%= image_tag resource.avatar, alt: "Preview", class: "absolute inset-0 w-full h-full object-cover", data: { avatar_target: "preview" } %>
+              <% else %>
+                <span class="material-symbols-outlined text-outline text-4xl" data-avatar-target="placeholder">account_circle</span>
+                <img alt="Preview" class="hidden absolute inset-0 w-full h-full object-cover" data-avatar-target="preview" />
+              <% end %>
+            </div>
+            <div class="absolute bottom-0 right-0 bg-primary text-on-primary rounded-full p-1.5 shadow-md translate-x-1 translate-y-1 z-10 cursor-pointer" data-action="click->avatar#openFileWindow">
+              <span class="material-symbols-outlined text-sm leading-none">photo_camera</span>
+            </div>
+          </div>
+          <%= f.file_field :avatar, class: 'hidden', data: { avatar_target: 'input', action: 'change->avatar#previewImage'}, accept: 'image/*' %>
+          <p class="text-on-surface-variant mt-2">プロフィール画像を設定</p>
+        </div>
+        <div class="space-y-1.5">
+          <%= f.label :nickname, "ニックネーム", class: "form-label" %>
+          <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", class: "w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-body-md focus:ring-2 focus:ring-primary-container transition-all", placeholder: "ゼンウォーカー_88", required: true %>
+        </div>
+        <div class="space-y-1.5">
+          <%= f.label :email, "メールアドレス" , class: "form-label" %>
+          <%= f.email_field :email, autocomplete: "email", class: "w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-body-md focus:ring-2 focus:ring-primary-container transition-all", placeholder: "you@example.com", required: true %>
+        </div>
+        <% if resource.new_record? %>
+          <div class="space-y-1.5">
+            <%= f.label :password, "パスワード" , class: "form-label" %>
+            <%= f.password_field :password, autocomplete: "new-password", class: "w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-body-md focus:ring-2 focus:ring-primary-container transition-all", placeholder: "••••••••", required: true %>
+          </div>
+          <div class="space-y-1.5">
+            <%= f.label :password_confirmation, "パスワード再入力" , class: "form-label" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-body-md focus:ring-2 focus:ring-primary-container transition-all", placeholder: "••••••••", required: true %>
+          </div>
+        <% else %>
+          <div class="space-y-1.5">
+            <%= f.label :current_password, "パスワード" , class: "form-label" %>
+            <%= f.password_field :current_password, autocomplete: "current-password", class: "w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-body-md focus:ring-2 focus:ring-primary-container transition-all", placeholder: "現在のパスワードを入力してください", required: true %>
+          </div>
+        <% end %>
+        <% if resource.new_record? %>
+          <div class="flex gap-3 py-2">
+            <div class="flex items-center h-5">
+              <%= f.check_box :terms, class: "h-4 w-4 rounded border-outline-variant text-primary focus:ring-primary", required: true %>
+            </div>
+            <div class="text-label-sm">
+              <%= f.label :terms, class: "text-on-surface-variant" do %>
+                <%= link_to '利用規約', terms_path, class: 'text-primary hover:underline', target: '_blank' %> と
+                <%= link_to 'プライバシーポリシー', privacy_path, class: 'text-primary hover:underline', target: '_blank' %> に同意します。
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+        <%= f.submit resource.new_record? ? "規約に同意して登録する" : "プロフィール情報を更新する", class: "mt-6 w-full bg-primary text-on-primary text-label-md py-4 rounded-lg shadow-sm hover:bg-primary-container hover:text-on-primary-container transition-all active:scale-[0.98]" %>
+        <% if resource.persisted? %>
+          <div class="mt-16 text-center">
+            <%= link_to 'アカウントの削除はこちら', registration_path(current_user), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-xs text-on-surface-variant/60 hover:underline' %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="flex-grow flex items-center justify-center px-margin-mobile md:px-margin-desktop py-16">
+  <div class="w-full max-w-md mx-auto">
+    <div class="bg-surface-container-lowest border border-outline-variant/30 p-8 md:p-10 rounded-xl shadow-[0_4px_20px_rgba(26,35,126,0.05)]">
+      <div class="mb-10 text-center md:text-left">
+        <h2 class="text-headline-md text-primary mb-2">お帰りなさい</h2>
+        <p class="text-body-md text-on-surface-variant">登録したメールアドレスとパスワードを入力してください。</p>
+      </div>
+
+      <%= form_with scope: resource_name, url: session_path(resource_name), class: "space-y-6", data: { turbo: false } do |f| %>
+      <% if flash[:alert] %>
+        <div class="p-4 mb-6 text-error text-center font-medium">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+        <div class="space-y-1.5">
+          <%= f.label :email, "メールアドレス", class: "block text-label-md text-on-surface-variant" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-body-md focus:ring-2 focus:ring-primary-container transition-all", placeholder: "example@mail.jp", required: true %>
+        </div>
+        <div class="space-y-1.5">
+          <%= f.label :password, "パスワード", class: "block text-label-md text-on-surface-variant" %>
+          <%= f.password_field :password, autocomplete: "current-password", class: "w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-body-md focus:ring-2 focus:ring-primary-container transition-all", placeholder: "••••••••", required: true %>
+        </div>
+        <%= f.submit "ログイン", class: "w-full bg-primary text-on-primary text-label-md mt-6 py-4 rounded-lg shadow-sm hover:bg-primary-container hover:text-on-primary-container transition-all active:scale-[0.98]" %>
+      <% end %>
+      <div class="mt-10 pt-8 border-t border-outline-variant/20 text-center">
+        <p class="text-on-surface-variant text-sm">
+          アカウントをお持ちでない方はこちら
+          <%= link_to "新規登録", new_registration_path(resource_name), class: "text-label-md text-primary ml-1 hover:underline underline-offset-4" %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

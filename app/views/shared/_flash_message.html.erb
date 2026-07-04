@@ -1,0 +1,11 @@
+<div class='absolute left-0 right-0 z-50 flex flex-col items-center gap-8 px-4 pointer-events-none select-none mt-16'>
+  <% flash.each do |key, value| %>
+    <div data-controller='flash' class="pointer-events-auto transition duration-300 transform">
+      <div class="flex items-center justify-center" role="alert">
+        <span class="text-xl sm:text-2xl font-black tracking-widest text-center text-white">
+          <%= value %>
+        </span>
+      </div>
+    </div>
+  <% end %>
+</div>
