@@ -1,0 +1,33 @@
+<section class="w-full max-w-max mx-auto flex flex-col md:flex-row gap-6 md:gap-14 p-6 md:p-10 mb-16 items-center animate-fade-in-up bg-surface rounded-2xl" id="profile-overview">
+  <div class="relative group w-48 h-48 flex-shrink-0">
+    <div class="w-full h-full rounded-full overflow-hidden border-4 border-surface-container-highest card-shadow">
+      <% if current_user.avatar.attached? %>
+        <%= image_tag current_user.avatar, class: "w-full h-full object-cover block" %>
+      <% else %>
+        <%= gravatar_for(current_user, size: 200, classes: "w-full h-full object-cover block") %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="flex-1 flex flex-col items-start space-y-4">
+    <span class="text-sm font-semibold tracking-widest text-secondary uppercase">プロフィール</span>
+    <h1 class="text-3xl md:text-4xl font-semibold text-primary leading-tight">
+      <%= current_user.nickname %>
+    </h1>
+    <% unless current_user.guest? %>
+      <div class="flex gap-4 mt-2">
+        <div class="flex items-center gap-2 text-on-surface-variant">
+          <span class="material-symbols-outlined text-base">calendar_today</span>
+          <p class="text-base">
+            <%= l(current_user.created_at, format: :default) %> 登録
+          </p>
+        </div>
+      </div>
+      <div class="pt-6">
+        <%= link_to edit_user_registration_path, class: 'flex items-center gap-2 text-sm font-semibold tracking-wider text-secondary border border-secondary/20 px-6 py-2 rounded-lg hover:bg-secondary-container transition-all' do %>
+          <span class="material-symbols-outlined text-[18px]">settings</span> アカウント設定
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</section>
