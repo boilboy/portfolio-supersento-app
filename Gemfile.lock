@@ -120,6 +120,7 @@ GEM
       thor (~> 1.4)
     globalid (1.4.0)
       activesupport (>= 6.1)
+    htmlbeautifier (1.4.3)
     i18n (1.15.2)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.2.3)
@@ -323,6 +324,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
+  x86_64-darwin-23
   x86_64-linux
 
 DEPENDENCIES
@@ -332,6 +334,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   foreman
+  htmlbeautifier
   importmap-rails
   pg (~> 1.1)
   puma (>= 5.0)
