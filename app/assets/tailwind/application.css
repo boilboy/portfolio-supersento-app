@@ -66,14 +66,8 @@
     --spacing-margin-mobile: 20px;
     --spacing-gutter: 24px;
 
-    --font-display-lg: "Source Serif 4";
-    --font-display-lg-mobile: "Source Serif 4";
-    --font-headline-md: "Source Serif 4";
-    --font-headline-sm: "Source Serif 4";
-    --font-body-lg: "Manrope";
-    --font-body-md: "Manrope";
-    --font-label-md: "Manrope";
-    --font-label-sm: "Manrope";
+    --font-family-display: "Source Serif 4", serif;
+    --font-family-body: "Manrope", sans-serif;
 
     --text-display-lg: 48px;
     --text-display-lg-mobile: 32px;
@@ -97,6 +91,14 @@
     box-shadow: 0 4px 20px rgba(26, 35, 126, 0.05);
 }
 
+@utility form-label {
+    @apply text-label-md text-on-surface-variant ml-1
+}
+
+@uitility footer-h5 {
+    @apply text-label-md font-bold mb-6 text-on-surface uppercase tracking-widest
+}
+
 @utility heat-gauge {
     height: 4px;
     background: linear-gradient(to right, var(--color-surface), var(--color-secondary));
@@ -117,7 +119,7 @@
 
 @layer base {
     body {
-        @apply bg-surface text-on-surface overflow-x-hidden relative font-body-md text-body-md;
+        @apply bg-surface text-on-surface overflow-x-hidden relative text-body-md;
     }
 
     .material-symbols-outlined {
