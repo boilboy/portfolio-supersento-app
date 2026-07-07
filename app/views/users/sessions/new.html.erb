@@ -1,0 +1,42 @@
+<div class="flex-grow flex items-center justify-center px-margin-mobile md:px-margin-desktop py-16">
+  <!-- Login Card -->
+  <div class="w-full max-w-md mx-auto">
+    <div class="bg-surface-container-lowest border border-outline-variant/30 p-8 md:p-10 rounded-xl shadow-[0_4px_20px_rgba(26,35,126,0.05)]">
+      <div class="mb-10 text-center md:text-left">
+        <h2 class="text-headline-md text-primary mb-2">お帰りなさい</h2>
+        <p class="text-body-md text-on-surface-variant">登録したメールアドレスとパスワードを入力してください。</p>
+      </div>
+      <%= form_with model: resource, url: user_session_path(resource_name), html: { class: "space-y-6" } do |f| %>
+        <!-- Email Field -->
+        <div class="space-y-1.5">
+          <%= f.label :email, "メールアドレス", class: "block text-label-md text-on-surface-variant" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-body-md focus:ring-2 focus:ring-primary-container transition-all", placeholder: "example@mail.jp", required: true %>
+        </div>
+        <!-- Password Field -->
+        <div class="space-y-1.5">
+          <%= f.label :password, "パスワード", class: "block text-label-md text-on-surface-variant" %>
+          <%= f.password_field :password, autocomplete: "current-password", class: "w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-body-md focus:ring-2 focus:ring-primary-container transition-all", placeholder: "••••••••", required: true %>
+        </div>
+        <!-- Options Row -->
+        <div class="flex items-center justify-between py-2">
+          <% if devise_mapping.rememberable? %>
+            <div class="flex items-center">
+              <%= f.check_box :remember_me, class: "h-4 w-4 rounded border-outline-variant text-primary focus:ring-primary/20" %>
+              <%= f.label :remember_me, "ログイン状態を保存する", class: "ml-2 block text-label-sm text-on-surface-variant" %>
+            </div>
+          <% end %>
+          <%= link_to "パスワードを忘れた方", new_password_path(resource_name), class: "text-label-sm text-secondary hover:text-primary transition-all underline decoration-outline-variant underline-offset-4" %>
+        </div>
+        <!-- Primary Action -->
+        <%= f.submit "ログイン", class: "w-full bg-primary text-on-primary text-label-md py-4 rounded-lg shadow-sm hover:bg-primary-container hover:text-on-primary-container transition-all active:scale-[0.98]" %>
+      <% end %>
+      <!-- Footer Links -->
+      <div class="mt-10 pt-8 border-t border-outline-variant/20 text-center">
+        <p class="text-on-surface-variant text-sm">
+          アカウントをお持ちでない方はこちら
+          <%= link_to "新規登録", new_registration_path(resource_name), class: "text-label-md text-primary ml-1 hover:underline underline-offset-4" %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

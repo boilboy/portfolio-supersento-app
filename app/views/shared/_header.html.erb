@@ -9,8 +9,13 @@
       </div>
     </div>
     <div class="flex items-center gap-4">
-      <%= button_to 'ログイン', '#', class: 'hidden md:flex text-on-surface font-medium px-4 py-2 hover:bg-surface-container rounded-lg transition-all font-label-md text-label-md'
-      %> <%= button_to 'マップを見る', '#', class: 'bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold hover:opacity-90 active:scale-95 transition-all font-label-md
+      <% if user_signed_in? %>
+        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'hidden md:flex text-on-surface font-medium px-4 py-2 hover:bg-surface-container rounded-lg transition-all text-label-md' %>
+      <% else %>
+        <%= link_to 'ログイン', new_user_session_path, class: 'hidden md:flex text-on-surface font-medium px-4 py-2 hover:bg-surface-container rounded-lg transition-all text-label-md' %>
+        <%= link_to '新規登録', new_user_registration_path, class: 'hidden md:flex text-on-surface font-medium px-4 py-2 hover:bg-surface-container rounded-lg transition-all text-label-md' %>
+      <% end %>
+      <%= button_to 'マップを見る', '#', class: 'bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold hover:opacity-90 active:scale-95 transition-all
       text-label-md shadow-sm' %>
     </div>
   </div>

@@ -1,0 +1,60 @@
+<div class="flex-grow flex items-center justify-center px-margin-mobile md:px-margin-desktop py-16">
+  <!-- Registration Form -->
+  <div class="w-full max-w-md mx-auto">
+    <div class="bg-surface-container-lowest border border-outline-variant/30 p-8 md:p-10 rounded-xl shadow-[0_4px_20px_rgba(26,35,126,0.05)]">
+      <div class="mb-10 text-center md:text-left">
+        <h2 class="text-headline-md text-primary mb-2">新規登録</h2>
+        <p class="text-body-md text-on-surface-variant">詳細を入力してプロフィールを作成してください。</p>
+      </div>
+      <%= form_with model: resource, url: registration_path(resource_name), html: { class: "space-y-6" } do |f| %><%= render "devise/shared/error_messages", resource: resource %>
+        <!-- Avatar Upload -->
+        <div class="flex flex-col items-center mb-8">
+          <div class="relative group cursor-pointer" onclick="document.getElementById('avatar_upload').click()">
+            <div class="w-24 h-24 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border-2 border-outline-variant hover:border-primary-container transition-all">
+              <span class="material-symbols-outlined text-outline text-4xl group-hover:text-primary-container transition-colors" id="avatar-placeholder">account_circle</span>
+              <img alt="Preview" class="hidden w-full h-full object-cover" id="avatar-preview"/>
+            </div>
+            <div class="absolute bottom-0 right-0 bg-primary text-on-primary rounded-full p-1.5 shadow-md">
+              <span class="material-symbols-outlined text-sm leading-none">photo_camera</span>
+            </div>
+          </div>
+          <%= f.file_field :avatar, class: 'hidden', id: 'avatar_upload', onchange: 'previewImage(this)', accept: 'image/*' %>
+          <p class="text-on-surface-variant mt-2">プロフィール画像を設定</p>
+        </div>
+        <!-- Nickname -->
+        <div class="space-y-1.5">
+          <%= f.label :nickname, "ニックネーム", class: "form-label" %>
+          <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", class: "w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-body-md focus:ring-2 focus:ring-primary-container transition-all", placeholder: "ゼンウォーカー_88", required: true %>
+        </div>
+        <!-- Email -->
+        <div class="space-y-1.5">
+          <%= f.label :email, "メールアドレス", class: "form-label" %>
+          <%= f.email_field :email, autocomplete: "email", class: "w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-body-md focus:ring-2 focus:ring-primary-container transition-all", placeholder: "you@example.com", required: true %>
+        </div>
+        <!-- Password -->
+        <div class="space-y-1.5">
+          <%= f.label :password, "パスワード", class: "form-label" %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-body-md focus:ring-2 focus:ring-primary-container transition-all", placeholder: "••••••••", required: true %>
+        </div>
+        <!-- Password Confirmation -->
+        <div class="space-y-1.5">
+          <%= f.label :password_confirmation, "パスワード再入力", class: "form-label" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-body-md focus:ring-2 focus:ring-primary-container transition-all", placeholder: "••••••••", required: true %>
+        </div>
+        <!-- Terms & Conditions -->
+        <div class="flex items-start gap-3 py-2">
+          <div class="flex items-center h-5">
+            <input class="h-4 w-4 rounded border-outline-variant text-primary focus:ring-primary" id="terms" name="terms" required="" type="checkbox"/>
+          </div>
+          <div class="text-label-sm">
+            <label class="text-on-surface-variant" for="terms">
+              <a class="text-primary hover:underline" href="/terms">利用規約</a>と<a class="text-primary hover:underline" href="/privacy">プライバシーポリシー</a>に同意します。
+            </label>
+          </div>
+        </div>
+        <!-- Primary Action Button -->
+        <%= f.submit "規約に同意して登録する", class: "w-full bg-primary text-on-primary text-label-md py-4 rounded-lg shadow-sm hover:bg-primary-container hover:text-on-primary-container transition-all active:scale-[0.98]" %>
+      <% end %>
+    </div>
+  </div>
+</div>
