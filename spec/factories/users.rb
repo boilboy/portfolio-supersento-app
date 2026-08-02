@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :user do
     nickname { 'テスト太郎' }
@@ -9,7 +11,7 @@ FactoryBot.define do
     trait :with_avatar do
       after(:build) do |user|
         user.avatar.attach(
-          io: File.open(Rails.root.join('spec', 'fixtures', 'files', 'sample.jpg')),
+          io: Rails.root.join('spec/fixtures/files/sample.jpg').open,
           filename: 'sample.jpg',
           content_type: 'image/jpeg'
         )

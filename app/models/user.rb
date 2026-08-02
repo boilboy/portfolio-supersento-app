@@ -1,4 +1,9 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
+  before_update :ensure_normal_user
+  before_destroy :ensure_normal_user
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -10,18 +15,27 @@ class User < ApplicationRecord
   validates :nickname, presence: true, length: { maximum: 20 }
   validates :password, format: {
     with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i,
-    message: 'は半角英数字をそれぞれ１文字以上含める必要があります'
+    message: 'は半角英数字をそれぞれ1文字以上含める必要があります'
   }, allow_blank: true
   validates :terms, acceptance: true
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
-      user.password = SecureRandom.urlsafe_base64
+      user.password = 'Password123'
       user.nickname = 'ゲストユーザー'
     end
   end
 
   def guest?
     email == 'guest@example.com'
+  end
+
+  private
+
+  def ensure_normal_user
+    return unless guest?
+
+    errors.add(:base, 'ゲストユーザーはアカウント設定を更新できません。')
+    throw :abort
   end
 end
