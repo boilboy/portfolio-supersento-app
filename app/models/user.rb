@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  before_update :ensure_normal_user
+  before_destroy :ensure_normal_user
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -16,12 +19,21 @@ class User < ApplicationRecord
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
-      user.password = SecureRandom.urlsafe_base64
+      user.password = 'Password123'
       user.nickname = 'ゲストユーザー'
     end
   end
 
   def guest?
     email == 'guest@example.com'
+  end
+
+  private
+
+  def ensure_normal_user
+    if guest?
+      errors.add(:base, 'ゲストユーザーはアカウント設定を更新できません。')
+      throw :abort
+    end
   end
 end
