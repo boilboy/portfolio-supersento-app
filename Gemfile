@@ -69,6 +69,10 @@ group :development, :test do
 
   # フォーマッター
   gem 'htmlbeautifier'
+
+  # system spec用
+  gem 'capybara'
+  gem 'selenium-webdriver'
 end
 
 group :development do
