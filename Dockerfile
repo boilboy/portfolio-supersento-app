@@ -31,6 +31,14 @@ FROM dependencies AS development
 ENV BUNDLE_PATH="/usr/local/bundle" \
     BUNDLE_APP_CONFIG="/usr/local/bundle"
 
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y \
+    chromium \
+    fonts-ipafont-gothic \
+    fonts-wqy-zenhei && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
+
 RUN bundle install
 
 COPY bin/docker-entrypoint /usr/local/bin/docker-entrypoint
