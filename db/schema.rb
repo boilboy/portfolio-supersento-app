@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_08_15_145623) do
+ActiveRecord::Schema[7.1].define(version: 2026_08_16_133002) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,22 @@ ActiveRecord::Schema[7.1].define(version: 2026_08_15_145623) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "facility_id", null: false
+    t.text "body", default: "", null: false
+    t.decimal "cleanliness_rating", precision: 2, scale: 1, null: false
+    t.decimal "relaxation_rating", precision: 2, scale: 1, null: false
+    t.decimal "bedrock_bath_rating", precision: 2, scale: 1
+    t.decimal "food_rating", precision: 2, scale: 1
+    t.decimal "rest_space_rating", precision: 2, scale: 1
+    t.decimal "service_rating", precision: 2, scale: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["facility_id"], name: "index_reviews_on_facility_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -65,4 +81,6 @@ ActiveRecord::Schema[7.1].define(version: 2026_08_15_145623) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "reviews", "facilities"
+  add_foreign_key "reviews", "users"
 end
