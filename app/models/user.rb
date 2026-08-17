@@ -4,6 +4,8 @@ class User < ApplicationRecord
   before_update :ensure_normal_user
   before_destroy :ensure_normal_user
 
+  has_many :reviews, dependent: :destroy
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
