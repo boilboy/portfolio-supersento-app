@@ -2,17 +2,37 @@ name: CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "*" ]
     paths-ignore:
       - 'README.md'
       - 'docs/**'
       - '**.png'
       - '**.jpg'
+      - '.gitignore'
+      - '.dockerignore'
+      - 'Dockerfile'
+      - 'docker-compose.yml'
+      - '.vscode/**'
+      - 'config/importmap.rb'
+      - 'config/tailwind.config.js'
+      - 'Procfile.dev'
+      - 'log/**'
+      - 'tmp/**'
   pull_request:
-    branches: [ "main" ]
+    branches: [ "*" ]
     paths-ignore:
       - 'README.md'
       - 'docs/**'
+      - '.gitignore'
+      - '.dockerignore'
+      - 'Dockerfile'
+      - 'docker-compose.yml'
+      - '.vscode/**'
+      - 'config/importmap.rb'
+      - 'config/tailwind.config.js'
+      - 'Procfile.dev'
+      - 'log/**'
+      - 'tmp/**'
 
 jobs:
   test:
