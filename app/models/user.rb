@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   before_update :ensure_normal_user
   before_destroy :ensure_normal_user
@@ -9,11 +11,11 @@ class User < ApplicationRecord
 
   has_one_attached :avatar, dependent: :destroy
 
-  validates :avatar, content_type: { in: %w[image/jpeg image/png], message: 'はJPEG、PNG形式の画像を選択してください。' }
+  validates :avatar, content_type: { in: %w[image/jpeg image/png], message: :invalid_image_type }
   validates :nickname, presence: true, length: { maximum: 20 }
   validates :password, format: {
     with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i,
-    message: 'は半角英数字をそれぞれ１文字以上含める必要があります'
+    message: :invalid_password_format
   }, allow_blank: true
   validates :terms, acceptance: true
 
@@ -31,9 +33,9 @@ class User < ApplicationRecord
   private
 
   def ensure_normal_user
-    if guest?
-      errors.add(:base, 'ゲストユーザーはアカウント設定を更新できません。')
-      throw :abort
-    end
+    return unless guest?
+
+    errors.add(:base, :cannot_update_guest_user)
+    throw :abort
   end
 end
