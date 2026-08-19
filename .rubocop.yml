@@ -5,12 +5,20 @@ require:
 AllCops:
   NewCops: enable
   Exclude:
-    - 'db/schema.rb'
-    - 'vendor/**/*'
     - 'bin/**/*'
-    - 'db/migrate/*'
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'spec/rails_helper.rb'
+    - 'spec/spec_helper.rb'
+    - 'vendor/**/*'
 
 Style/AsciiComments:
+  Enabled: false
+
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+Style/Documentation:
   Enabled: false
 
 Metrics/MethodLength:
@@ -19,7 +27,20 @@ Metrics/MethodLength:
 Metrics/ClassLength:
   Max: 200
 
-# RSpec: 1つのitブロック内のアサーション（expect）の数制限を無効化
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
+
+RSpec/ContextWording:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Max: 5
+  Exclude:
+    - 'spec/system/**/*_spec.rb'
+
 RSpec/MultipleExpectations:
   Enabled: false
 
