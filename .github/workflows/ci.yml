@@ -1,0 +1,84 @@
+name: CI
+
+on:
+  push:
+    branches: [ "*" ]
+    paths-ignore:
+      - 'README.md'
+      - 'docs/**'
+      - '**.png'
+      - '**.jpg'
+      - '.gitignore'
+      - '.dockerignore'
+      - 'Dockerfile'
+      - 'docker-compose.yml'
+      - '.vscode/**'
+      - 'config/importmap.rb'
+      - 'config/tailwind.config.js'
+      - 'Procfile.dev'
+      - 'log/**'
+      - 'tmp/**'
+  pull_request:
+    branches: [ "*" ]
+    paths-ignore:
+      - 'README.md'
+      - 'docs/**'
+      - '.gitignore'
+      - '.dockerignore'
+      - 'Dockerfile'
+      - 'docker-compose.yml'
+      - '.vscode/**'
+      - 'config/importmap.rb'
+      - 'config/tailwind.config.js'
+      - 'Procfile.dev'
+      - 'log/**'
+      - 'tmp/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      RAILS_ENV: test
+      DATABASE_HOST: localhost
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: password
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3.1'
+          bundler-cache: true
+
+      - name: リンターの実行 (RuboCop)
+        run: bundle exec rubocop
+
+      - name: Tailwind CSSのビルド
+        run: bundle exec rails tailwindcss:build
+
+      - name: DBのセットアップ
+        run: |
+          bin/rails db:create
+          bin/rails db:schema:load
+
+      - name: テストの実行 (RSpec)
+        run: bundle exec rspec
