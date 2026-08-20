@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Review.destroy_all
 Facility.destroy_all
 
@@ -5,13 +7,18 @@ user = User.find_by(email: 'riku98@gmail.com') || User.create!(
   email: 'test1@example.com',
   password: 'password123',
   nickname: 'サウナマン'
-  )
+)
 
-facility1 = Facility.create!(name: 'スパメッツァおおたか 竜泉寺の湯', address: '千葉県 流山市', introduction: '室内には、ドラゴンサウナという大きなサウナ室があります。中は暗くテレビもなくゆっくり過ごしたい方にはおすすめの施設となっております。岩盤浴も別料金になりますが、たくさんの書籍と6種の岩盤浴やコワーキング設備やソファなどあり、快適に過ごせます。')
-facility2 = Facility.create!(name: '東京豊洲 万葉倶楽部', address: '東京都 江東区', introduction: '箱根と湯河原の温泉を毎日運ぶ24時間営業の温泉施設です。東京湾や360度の夜景が楽しめる展望足湯庭園が魅力です。')
-facility3 = Facility.create!(name: 'RAKU SPA 1010 神田', address: '東京都 千代田区', introduction: '当施設では都心のオアシス的存在となっており、100度のドライサウナと水風呂があり、荷物を預けて皇居ランなどに出かけられるなど立地の良さを生かした魅力的な施設となっております。')
-facility4 = Facility.create!(name: '湯乃泉 草加健康センター', address: '埼玉県 草加市', introduction: '薬草風呂があり、温泉の効能を気にする方にとっては、とてもいい選択肢になると思われます。サウナの見どころとしては、アウフグースイベントやブロワーを使ったロウリュなど整うための魅力的なイベントがたくさんあります。')
-facility5 = Facility.create!(name: 'ROOFTOP', address: '東京都 杉並区', introduction: 'まさにサウナに特化した施設であり、整うために外気浴の倒して整えるチェアが複数あります。スーパー銭湯によくある湯船がない点には注意が必要になります。')
+facility1 = Facility.create!(name: 'スパメッツァおおたか 竜泉寺の湯', address: '千葉県 流山市',
+                             introduction: '室内には、ドラゴンサウナという大きなサウナ室があります。中は暗くテレビもなくゆっくり過ごしたい方にはおすすめの施設となっております。岩盤浴も別料金になりますが、たくさんの書籍と6種の岩盤浴やコワーキング設備やソファなどあり、快適に過ごせます。')
+facility2 = Facility.create!(name: '東京豊洲 万葉倶楽部', address: '東京都 江東区',
+                             introduction: '箱根と湯河原の温泉を毎日運ぶ24時間営業の温泉施設です。東京湾や360度の夜景が楽しめる展望足湯庭園が魅力です。')
+facility3 = Facility.create!(name: 'RAKU SPA 1010 神田', address: '東京都 千代田区',
+                             introduction: '当施設では都心のオアシス的存在となっており、100度のドライサウナと水風呂があり、荷物を預けて皇居ランなどに出かけられるなど立地の良さを生かした魅力的な施設となっております。')
+facility4 = Facility.create!(name: '湯乃泉 草加健康センター', address: '埼玉県 草加市',
+                             introduction: '薬草風呂があり、温泉の効能を気にする方にとっては、とてもいい選択肢になると思われます。サウナの見どころとしては、アウフグースイベントやブロワーを使ったロウリュなど整うための魅力的なイベントがたくさんあります。')
+facility5 = Facility.create!(name: 'ROOFTOP', address: '東京都 杉並区',
+                             introduction: 'まさにサウナに特化した施設であり、整うために外気浴の倒して整えるチェアが複数あります。スーパー銭湯によくある湯船がない点には注意が必要になります。')
 
 Review.create!(
   user: user,

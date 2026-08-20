@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   before_update :ensure_normal_user
   before_destroy :ensure_normal_user
@@ -33,9 +35,9 @@ class User < ApplicationRecord
   private
 
   def ensure_normal_user
-    if guest?
-      errors.add(:base, 'ゲストユーザーはアカウント設定を更新できません。')
-      throw :abort
-    end
+    return unless guest?
+
+    errors.add(:base, 'ゲストユーザーはアカウント設定を更新できません。')
+    throw :abort
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
@@ -92,23 +94,23 @@ RSpec.describe User, type: :model do
     describe '.guest(クラスメソッド)' do
       context 'ゲストユーザーが存在しない場合' do
         it '新しくゲストユーザーが作成されること' do
-          expect { User.guest }.to change(User, :count).by(1)
+          expect { described_class.guest }.to change(described_class, :count).by(1)
 
-          guest = User.order(:created_at).last
+          guest = described_class.order(:created_at).last
           expect(guest.email).to eq 'guest@example.com'
           expect(guest.nickname).to eq 'ゲストユーザー'
         end
       end
 
       context 'ゲストユーザーがすでに存在する場合' do
-        before { User.guest }
+        before { described_class.guest }
 
         it '新しいレコードは作成されないこと' do
-          expect { User.guest }.not_to change(User, :count)
+          expect { described_class.guest }.not_to change(described_class, :count)
         end
 
         it '既存のゲストユーザーを返すこと' do
-          existing_guest = User.guest
+          existing_guest = described_class.guest
           expect(existing_guest.email).to eq 'guest@example.com'
         end
       end
@@ -140,7 +142,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'ゲストユーザーの削除が阻止されること' do
-        expect { guest_user.destroy }.not_to change(User, :count)
+        expect { guest_user.destroy }.not_to change(described_class, :count)
         expect(guest_user.errors[:base]).to include('ゲストユーザーはアカウント設定を更新できません。')
       end
     end

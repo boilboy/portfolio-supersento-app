@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'ユーザー認証とアカウント管理', type: :system do
@@ -143,14 +145,14 @@ RSpec.describe 'ユーザー認証とアカウント管理', type: :system do
 
       context 'アカウント削除' do
         it '削除リンクからログイン中のユーザー自身を削除できること' do
-          expect {
+          expect do
             accept_confirm do
               click_link 'アカウントの削除はこちら'
             end
 
             expect(page).to have_current_path root_path
             expect(page).to have_content 'アカウントを削除しました。またのご利用をお待ちしております。'
-          }.to change(User, :count).by(-1)
+          end.to change(User, :count).by(-1)
         end
       end
     end
