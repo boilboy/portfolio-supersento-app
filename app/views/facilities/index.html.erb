@@ -1,4 +1,77 @@
-<div>
-  <h1 class="font-bold text-4xl">Facilities#index</h1>
-  <p>Find me in app/views/facilities/index.html.erb</p>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
+  <div class="mb-8 space-y-4">
+    <div class="max-w-2xl mx-auto">
+      <div class="flex items-center gap-3 px-4 py-4 rounded-xl border border-outline-variant bg-surface-container-low focus-within:ring-2 focus-within:ring-primary transition-all shadow-sm">
+        <span class="material-symbols-outlined text-xl text-on-surface-variant shrink-0">
+          search
+        </span>
+        <input class="w-full bg-transparent p-0 focus:outline-none text-body-md" placeholder="施設名、住所、キーワードで検索" type="text" />
+      </div>
+    </div>
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-outline-variant pb-4">
+      <h2 class="font-headline-md text-on-surface flex items-baseline gap-2">
+        検索結果 <span class="text-primary font-bold">12</span> <span class="text-on-surface-variant text-body-md font-normal">件の施設</span>
+      </h2>
+      <div class="flex items-center gap-4 w-full sm:w-auto">
+        <div class="flex-1 sm:flex-none">
+          <select class="w-full sm:w-48 border-none bg-surface-container-low rounded-lg text-[14px] font-label-md py-2">
+            <option>おすすめ順</option>
+            <option>料金の安い順</option>
+            <option>サウナ温度の高い順</option>
+            <option>評価の高い順</option>
+          </select>
+        </div>
+        <div class="flex border border-outline-variant rounded-lg overflow-hidden shrink-0">
+          <button class="p-2 bg-primary text-on-primary"><span class="material-symbols-outlined">grid_view</span></button>
+          <button class="p-2 bg-surface hover:bg-surface-container text-on-surface-variant transition-colors cursor-pointer"><span class="material-symbols-outlined">list</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter lg:grid-cols-3">
+    <div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden group hover:shadow-xl transition-all duration-300">
+      <img alt="スパメッツァ おおたか" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU0xN0sGwHSyGTBY4Kq6PFyBPMB8C196U6JZqpNiLT9mLwUVXhRcPEKFK-zlaJdWcKgBiFmFwM1c6Es_xaSyexvdT7xgqsv8AZoK_nZcPfedmH_fmkFB4jKbR8oM3hkqveGw-G3e4GsO6K7MlEYDkoKP-a0mBLnQL9x-X5dn_WDV8YJA1rWnjPTf80BICFGGXz1W2uku22FmGwUT9miOy1F_QKS0oK3oRbXjr7LijQ97FanV100HEeYdTGnOsbnjLFgY7ns5HhD3A" />
+      <div class="p-6">
+        <div class="flex justify-between items-start mb-2">
+          <div>
+            <p class="text-primary font-bold text-[10px] uppercase mb-1">Chiba, Nagareyama</p>
+            <h3 class="font-headline-sm text-on-surface group-hover:text-primary transition-colors">スパメッツァ おおたかの森
+            </h3>
+          </div>
+          <div class="flex items-center gap-1 bg-secondary-container text-on-secondary-container px-2 py-1 rounded">
+            <span class="material-symbols-outlined text-sm">star</span>
+            <span class="font-bold text-[14px] font-label-md">4.9</span>
+          </div>
+        </div>
+        <p class="text-body-md text-on-surface-variant line-clamp-2 mb-6">
+          5種類のサウナと、日本最大級の「ドラゴンロウリュ」が話題。外気浴スペースにはととのい椅子が30脚以上完備。
+        </p>
+        <div class="flex items-center justify-between pt-4 border-t border-outline-variant">
+          <div>
+            <span class="text-[12px] font-label-sm text-on-surface-variant">入館料 (平日)</span>
+            <p class="text-headline-sm font-bold text-primary">¥1,100<span class="text-body-md font-normal text-on-surface-variant">〜</span></p>
+          </div>
+          <a class="inline-flex items-center gap-2 bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md hover:bg-primary-container transition-all" href="#">
+            詳細を見る
+            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mt-16 flex items-center justify-center gap-4">
+    <button class="w-12 h-12 flex items-center justify-center rounded-xl border border-outline-variant bg-surface text-on-surface-variant hover:bg-surface-container transition-colors" disabled= "">
+      <span class="material-symbols-outlined">chevron_left</span>
+    </button>
+    <div class="flex items-center gap-2">
+      <button class="w-12 h-12 rounded-xl bg-primary text-on-primary font-bold shadow-lg shadow-primary/20">1</button>
+      <button class="w-12 h-12 rounded-xl bg-surface text-on-surface hover:bg-surface-container transition-colors font-bold cursor-pointer">2</button>
+      <button class="w-12 h-12 rounded-xl bg-surface text-on-surface hover:bg-surface-container transition-colors font-bold cursor-pointer">3</button>
+      <span class="mx-2 text-on-surface-variant">...</span>
+      <button class="w-12 h-12 rounded-xl bg-surface text-on-surface hover:bg-surface-container transition-colors font-bold cursor-pointer">8</button>
+    </div>
+    <button class="w-12 h-12 flex items-center justify-center rounded-xl border border-outline-variant bg-surface text-on-surface-variant hover:bg-surface-container transition-colors cursor-pointer">
+      <span class="material-symbols-outlined">chevron_right</span>
+    </button>
+  </div>
 </div>
