@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_08_16_133002) do
+ActiveRecord::Schema[7.1].define(version: 2026_09_03_150755) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,11 @@ ActiveRecord::Schema[7.1].define(version: 2026_08_16_133002) do
     t.text "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "sauna_temperature_male", precision: 4, scale: 1
+    t.decimal "sauna_temperature_female", precision: 4, scale: 1
+    t.decimal "water_temperature_male", precision: 4, scale: 1
+    t.decimal "water_temperature_female", precision: 4, scale: 1
+    t.integer "price", null: false
   end
 
   create_table "reviews", force: :cascade do |t|
