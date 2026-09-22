@@ -75,6 +75,9 @@ group :development, :test do
   # system spec用
   gem 'capybara'
   gem 'selenium-webdriver'
+
+  # デバック用
+  gem 'bullet'
 end
 
 group :development do
