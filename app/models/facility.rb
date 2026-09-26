@@ -11,6 +11,10 @@ class Facility < ApplicationRecord
   validates :image, presence: true
 
   def average_rating
+    self[:average_rating].to_f
+  end
+
+  def update_average_rating
     columns = %i[cleanliness_rating relaxation_rating service_rating bedrock_bath_rating food_rating rest_space_rating]
 
     sum_sql = columns.map { |col| "COALESCE(#{col}, 0)" }.join(' + ')
@@ -19,7 +23,9 @@ class Facility < ApplicationRecord
 
     sql_expression = "(#{sum_sql}) / NULLIF((#{count_sql}), 0)"
 
-    reviews.average(sql_expression)&.round(1) || 0.0
+    avg = reviews.average(sql_expression)&.round(1) || 0.0
+
+    update_columns(average_rating: avg) # rubocop:disable Rails/SkipsModelValidations
   end
 
   def rating_badge_class

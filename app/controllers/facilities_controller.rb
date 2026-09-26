@@ -2,7 +2,8 @@
 
 class FacilitiesController < ApplicationController
   def index
-    @facilities = Facility.all
+    @facilities = Facility.with_attached_image
+    @total_count = @facilities.size
   end
 
   def show

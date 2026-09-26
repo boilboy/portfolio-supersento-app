@@ -155,3 +155,11 @@ Review.create!(
   rest_space_rating: 4.5,
   service_rating: 4.0
 )
+
+puts "初期データの作成が完了しました。施設の平均点を一括計算しています..."
+
+Facility.find_each do |facility|
+  facility.update_average_rating
+end
+
+puts "すべてのレビューの平均点の計算が完了しました！"
