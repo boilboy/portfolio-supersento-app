@@ -2,7 +2,8 @@
 
 class FacilitiesController < ApplicationController
   def index
-    @facilities = Facility.with_attached_image
+    @q = Facility.search_vacancies(params[:q])
+    @facilities = @q.result(distinct: true).with_attached_image
     @total_count = @facilities.size
   end
 
