@@ -9,3 +9,6 @@ application.register("avatar", AvatarController)
 
 import FlashController from "./flash_controller"
 application.register("flash", FlashController)
+
+import SortController from "./sort_controller"
+application.register("sort", SortController)

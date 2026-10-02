@@ -10,6 +10,26 @@ class Facility < ApplicationRecord
   validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :image, presence: true
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[name address introduction average_rating price]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    []
+  end
+
+  def self.search_vacancies(ransack_params)
+    ransack_params ||= {}
+
+    keywords = ransack_params[:keyword].to_s.split(/[[:blank:]]+/).compact_blank
+
+    search_conditions = { name_or_address_or_introduction_cont_all: keywords }
+
+    search_conditions[:s] = ransack_params[:s] if ransack_params[:s].present?
+
+    ransack(search_conditions)
+  end
+
   def average_rating
     self[:average_rating].to_f
   end

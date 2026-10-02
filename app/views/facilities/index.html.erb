@@ -1,30 +1,34 @@
 <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
-  <div class="mb-8 space-y-4">
-    <div class="max-w-2xl mx-auto">
-      <div class="flex items-center gap-3 px-4 py-4 rounded-xl border border-outline-variant bg-surface-container-low focus-within:ring-2 focus-within:ring-primary transition-all shadow-sm">
-        <span class="material-symbols-outlined text-xl text-on-surface-variant shrink-0">
-          search
-        </span>
-        <input class="w-full bg-transparent p-0 focus:outline-none text-body-md" placeholder="施設名、住所、キーワードで検索" type="text" />
+  <%= search_form_for @q, url: facilities_path, html: { data: { controller: "sort", sort_target: "form" } } do |f| %>
+    <%= f.hidden_field :s, data: { sort_target: "sortInput" } %>
+    <div class="mb-8 space-y-4">
+      <div class="max-w-2xl mx-auto">
+        <div class="flex items-center gap-3 px-4 py-4 rounded-xl border border-outline-variant bg-surface-container-low focus-within:ring-2 focus-within:ring-primary transition-all shadow-sm">
+          <span class="material-symbols-outlined text-xl text-on-surface-variant shrink-0">
+            search
+          </span>
+          <%= f.search_field :keyword, value: params.dig(:q, :keyword), class: "w-full bg-transparent p-0 focus:outline-none text-body-md", placeholder: "施設名、住所、キーワードで検索" %>
+        </div>
       </div>
-    </div>
-    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-outline-variant pb-4">
-      <h2 class="font-headline-md text-on-surface flex items-baseline gap-2">
-        検索結果 <span class="text-primary font-bold"><%= @total_count %></span>
-        <span class="text-on-surface-variant text-body-md font-normal">件の施設</span>
-      </h2>
-      <div class="flex items-center gap-4 w-full sm:w-auto">
-        <div class="flex-1 sm:flex-none">
-          <select class="w-full sm:w-48 border-none bg-surface-container-low rounded-lg text-[14px] font-label-md py-2">
-            <option>おすすめ順</option>
-            <option>料金の安い順</option>
-            <option>サウナ温度の高い順</option>
-            <option>評価の高い順</option>
-          </select>
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-outline-variant pb-4">
+        <h2 class="font-headline-md text-on-surface flex items-baseline gap-2">
+          検索結果 <span class="text-primary font-bold"><%= @total_count %></span>
+          <span class="text-on-surface-variant text-body-md font-normal">件の施設</span>
+        </h2>
+        <div class="flex items-center gap-4 w-full sm:w-auto">
+          <div class="flex-1 sm:flex-none">
+            <select class="w-full sm:w-48 border-none bg-surface-container-low rounded-lg text-[14px] font-label-md py-2"
+                    data-action="change->sort#submit">
+              <option value="id asc" <%= 'selected' if params.dig(:q, :s) == 'id asc' || params.dig(:q, :s).blank? %> >おすすめ順</option>
+              <option value="average_rating desc" <%= 'selected' if params.dig(:q, :s) == 'average_rating desc' %> >評価の高い順</option>
+              <option value="price asc" <%= 'selected' if params.dig(:q, :s) == 'price asc' %>>料金の安い順</option>
+            </select>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+    <%= f.submit style: "display: none;" %>
+  <% end %>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter lg:grid-cols-3">
     <% @facilities.each do |facility| %>
       <div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden group hover:shadow-xl transition-all duration-300">
