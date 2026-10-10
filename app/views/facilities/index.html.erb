@@ -12,7 +12,7 @@
       </div>
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-outline-variant pb-4">
         <h2 class="font-headline-md text-on-surface flex items-baseline gap-2">
-          検索結果 <span class="text-primary font-bold"><%= @total_count %></span>
+          検索結果 <span class="text-primary font-bold"><%= @facilities.total_count %></span>
           <span class="text-on-surface-variant text-body-md font-normal">件の施設</span>
         </h2>
         <div class="flex items-center gap-4 w-full sm:w-auto">
@@ -29,52 +29,82 @@
     </div>
     <%= f.submit style: "display: none;" %>
   <% end %>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter lg:grid-cols-3">
-    <% @facilities.each do |facility| %>
-      <div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden group hover:shadow-xl transition-all duration-300">
-        <%= image_tag facility.image, alt: facility.name, class: 'w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700' %>
-        <div class="p-6">
-          <div class="flex justify-between items-start mb-2">
-            <div>
-              <p class="text-primary font-bold text-[10px] uppercase mb-1"><%= facility.address %></p>
-              <h3 class="font-headline-sm text-on-surface group-hover:text-primary transition-colors"><%= facility.name %>
-              </h3>
+
+  <% if @facilities.any? %>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter lg:grid-cols-3">
+      <% @facilities.each do |facility| %>
+        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden group hover:shadow-xl transition-all duration-300">
+          <%= image_tag facility.image, alt: facility.name, class: 'w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700' %>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <div>
+                <p class="text-primary font-bold text-[10px] uppercase mb-1"><%= facility.address %></p>
+                <h3 class="font-headline-sm text-on-surface group-hover:text-primary transition-colors"><%= facility.name %>
+                </h3>
+              </div>
+              <div class="flex items-center gap-1 px-2 py-1 rounded <%= facility.rating_badge_class %>">
+                <span class="material-symbols-outlined text-sm">star</span>
+                <span class="font-bold text-[14px] font-label-md"><%= facility.average_rating %></span>
+              </div>
             </div>
-            <div class="flex items-center gap-1 px-2 py-1 rounded <%= facility.rating_badge_class %>">
-              <span class="material-symbols-outlined text-sm">star</span>
-              <span class="font-bold text-[14px] font-label-md"><%= facility.average_rating %></span>
+            <p class="text-body-md text-on-surface-variant line-clamp-2 mb-6">
+              <%= facility.introduction %>
+            </p>
+            <div class="flex items-center justify-between pt-4 border-t border-outline-variant">
+              <div>
+                <span class="text-[12px] font-label-sm text-on-surface-variant">入館料 (平日)</span>
+                <p class="text-headline-sm font-bold text-primary">¥<%= number_with_delimiter(facility.price) %><span class="text-body-md font-normal text-on-surface-variant">〜</span></p>
+              </div>
+              <%= link_to facility_path(facility), class: "inline-flex items-center gap-2 bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md hover:bg-primary-container transition-all" do %>
+                詳細を見る
+                <span class="material-symbols-outlined text-lg">arrow_forward</span>
+              <% end %>
             </div>
-          </div>
-          <p class="text-body-md text-on-surface-variant line-clamp-2 mb-6">
-            <%= facility.introduction %>
-          </p>
-          <div class="flex items-center justify-between pt-4 border-t border-outline-variant">
-            <div>
-              <span class="text-[12px] font-label-sm text-on-surface-variant">入館料 (平日)</span>
-              <p class="text-headline-sm font-bold text-primary">¥<%= number_with_delimiter(facility.price) %><span class="text-body-md font-normal text-on-surface-variant">〜</span></p>
-            </div>
-            <%= link_to facility_path(facility), class: "inline-flex items-center gap-2 bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md hover:bg-primary-container transition-all" do %>
-              詳細を見る
-              <span class="material-symbols-outlined text-lg">arrow_forward</span>
-            <% end %>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
-  <div class="mt-16 flex items-center justify-center gap-4">
-    <button class="w-12 h-12 flex items-center justify-center rounded-xl border border-outline-variant bg-surface text-on-surface-variant hover:bg-surface-container transition-colors" disabled= "">
-      <span class="material-symbols-outlined">chevron_left</span>
-    </button>
-    <div class="flex items-center gap-2">
-      <button class="w-12 h-12 rounded-xl bg-primary text-on-primary font-bold shadow-lg shadow-primary/20">1</button>
-      <button class="w-12 h-12 rounded-xl bg-surface text-on-surface hover:bg-surface-container transition-colors font-bold cursor-pointer">2</button>
-      <button class="w-12 h-12 rounded-xl bg-surface text-on-surface hover:bg-surface-container transition-colors font-bold cursor-pointer">3</button>
-      <span class="mx-2 text-on-surface-variant">...</span>
-      <button class="w-12 h-12 rounded-xl bg-surface text-on-surface hover:bg-surface-container transition-colors font-bold cursor-pointer">8</button>
+      <% end %>
     </div>
-    <button class="w-12 h-12 flex items-center justify-center rounded-xl border border-outline-variant bg-surface text-on-surface-variant hover:bg-surface-container transition-colors cursor-pointer">
-      <span class="material-symbols-outlined">chevron_right</span>
-    </button>
-  </div>
+    <div class="mt-16 flex items-center justify-center gap-4">
+      <% if @facilities.first_page? %>
+        <button class="w-12 h-12 flex items-center justify-center rounded-xl border border-outline-variant bg-surface text-on-surface-variant/40 cursor-not-allowed select-none" disabled>
+          <span class="material-symbols-outlined">chevron_left</span>
+        </button>
+      <% else %>
+        <%= link_to url_for(@pagination_query.merge(page: @facilities.current_page - 1)),
+              class: "w-12 h-12 flex items-center justify-center rounded-xl border border-outline-variant bg-surface text-on-surface-variant hover:bg-surface-container transition-colors cursor-pointer" do %>
+          <span class="material-symbols-outlined">chevron_left</span>
+        <% end %>
+      <% end %>
+      <div class="flex items-center gap-2">
+        <% (1..@facilities.total_pages).each do |page| %>
+          <% if page == @facilities.current_page %>
+            <button class="w-12 h-12 rounded-xl bg-primary text-on-primary font-bold shadow-lg shadow-primary/20">
+              <%= page %>
+            </button>
+          <% else %>
+            <%= link_to page, url_for(@pagination_query.merge(page: page)),
+                  class: "w-12 h-12 flex items-center justify-center rounded-xl bg-surface text-on-surface hover:bg-surface-container transition-colors font-bold cursor-pointer" %>
+          <% end %>
+        <% end %>
+      </div>
+      <% if @facilities.last_page? %>
+        <button class="w-12 h-12 flex items-center justify-center rounded-xl border border-outline-variant bg-surface text-on-surface-variant/40 cursor-not-allowed select-none" disabled>
+          <span class="material-symbols-outlined">chevron_right</span>
+        </button>
+      <% else %>
+        <%= link_to url_for(@pagination_query.merge(page: @facilities.current_page + 1)),
+              class: "w-12 h-12 flex items-center justify-center rounded-xl border border-outline-variant bg-surface text-on-surface-variant hover:bg-surface-container transition-colors cursor-pointer" do %>
+          <span class="material-symbols-outlined">chevron_right</span>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% unless @facilities.any? %>
+    <div class="mt-32 mb-48 text-center py-12 px-4 rounded-2xl bg-surface-container-low border border-dashed border-outline-variant max-w-md mx-auto">
+      <span class="material-symbols-outlined text-4xl text-on-surface-variant/60 mb-3 block">search_off</span>
+      <p class="text-on-surface font-bold text-body-lg mb-1">該当する施設が見つかりませんでした</p>
+      <p class="text-on-surface-variant text-body-md">別のキーワードでお試しください。</p>
+    </div>
+  <% end %>
 </div>
