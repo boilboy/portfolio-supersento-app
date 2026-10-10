@@ -1,0 +1,12 @@
+<% if current_page.first? %>
+  <button class="w-12 h-12 flex items-center justify-center rounded-xl border border-outline-variant bg-surface text-on-surface-variant/40 pointer-events-auto select-none" 
+          disabled
+          style="cursor: not-allowed !important;">
+    <span class="material-symbols-outlined">chevron_left</span>
+  </button>
+<% else %>
+  <%= link_to url, remote: remote, rel: 'prev',
+        class: "w-12 h-12 flex items-center justify-center rounded-xl border border-outline-variant bg-surface text-on-surface-variant hover:bg-surface-container transition-colors cursor-pointer" do %>
+    <span class="material-symbols-outlined">chevron_left</span>
+  <% end %>
+<% end %>

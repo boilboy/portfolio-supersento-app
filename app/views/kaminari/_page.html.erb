@@ -1,0 +1,9 @@
+<% if page.current? %>
+  <button class="w-12 h-12 rounded-xl bg-primary text-on-primary font-bold shadow-lg shadow-primary/20 pointer-events-auto"
+          style="cursor: not-allowed !important;">
+    <%= page %>
+  </button>
+<% else %>
+  <%= link_to page, url, remote: remote, rel: page.rel,
+        class: "w-12 h-12 flex items-center justify-center rounded-xl bg-surface text-on-surface hover:bg-surface-container transition-colors font-bold cursor-pointer" %>
+<% end %>
