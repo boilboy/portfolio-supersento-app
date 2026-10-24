@@ -1,0 +1,27 @@
+<%
+  container_class ||= "flex items-center gap-3 px-4 py-4 rounded-xl border border-outline-variant bg-surface-container-low focus-within:ring-2 focus-within:ring-primary transition-all shadow-sm max-w-2xl mx-auto"
+  icon_class      ||= "text-xl text-on-surface-variant shrink-0"
+  input_class     ||= "w-full bg-transparent p-0 focus:outline-none text-body-md"
+  placeholder     ||= "施設名、住所、キーワードで検索"
+  show_button     ||= false
+  html_options    ||= {}
+%>
+
+<%= search_form_for q, url: search_url, method: :get, html: html_options do |f| %>
+  <% if html_options.dig(:data, :controller) == "sort" %>
+    <%= f.hidden_field :s, data: { sort_target: "sortInput" } %>
+  <% end %>
+  <div class="<%= container_class %>">
+    <span class="material-symbols-outlined <%= icon_class %>">
+      search
+    </span>
+    <%= f.search_field :keyword, value: params.dig(:q, :keyword), class: input_class, placeholder: placeholder %>
+    <% if show_button %>
+      <button type="submit" class="bg-primary text-on-primary px-8 py-4 rounded-full font-bold hover:bg-primary-container transition-all shrink-0">
+        検索
+      </button>
+    <% end %>
+  </div>
+  <%= yield f if block_given? %>
+  <%= f.submit style: "display: none;" %>
+<% end %>

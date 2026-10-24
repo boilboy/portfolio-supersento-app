@@ -13,14 +13,14 @@
       心と体を解きほぐす「複合リラクゼーション空間」が、あなたを待っています。
     </p>
 
-    <div class="bg-white/95 backdrop-blur-md p-2 rounded-full flex items-center shadow-xl border border-outline-variant/20 max-w-2xl mx-auto group focus-within:ring-2 focus-within:ring-primary/20 transition-all">
-      <span class="material-symbols-outlined ml-4 text-outline">search</span>
-      <input class="flex-grow bg-transparent border-none focus:ring-0 px-4 py-4 text-body-md text-on-surface placeholder:text-outline/60"
-        placeholder="エリア、設備、キーワードで検索..." type="text" />
-      <button class="bg-primary text-on-primary px-8 py-4 rounded-full font-bold hover:bg-primary-container transition-all">
-        検索
-      </button>
-    </div>
+    <%= render "shared/search_form",
+           q: @q,
+           search_url: facilities_path,
+           container_class: "bg-white/95 backdrop-blur-md p-2 rounded-full flex items-center shadow-xl border border-outline-variant/20 max-w-2xl mx-auto group focus-within:ring-2 focus-within:ring-primary/20 transition-all",
+           icon_class: "ml-4 text-outline",
+           input_class: "flex-grow bg-transparent border-none focus:ring-0 px-4 py-4 text-body-md text-on-surface placeholder:text-outline/60",
+           placeholder: "エリア、設備、キーワードで検索...",
+           show_button: true %>
 
     <!-- Popular Tags -->
     <div class="mt-12 max-w-3xl mx-auto animate-fade-in" style="animation-delay: 0.4s;">
@@ -106,7 +106,7 @@
         入浴、食事、休息のすべてが最高峰の施設を厳選。
       </p>
     </div>
-    <%= link_to '#', class: 'text-primary font-bold flex items-center gap-2 group' do %>
+    <%= link_to facilities_path, class: 'text-primary font-bold flex items-center gap-2 group' do %>
       すべて見る <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
     <% end %>
   </div>
