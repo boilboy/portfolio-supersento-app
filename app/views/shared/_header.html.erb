@@ -4,8 +4,12 @@
     <div class="flex items-center gap-8">
       <%= link_to 'SENTO GUIDE', root_path, class: 'font-family-display text-headline-sm font-bold tracking-widest text-primary uppercase' %>
       <div class="hidden md:flex items-center gap-6">
-        <%= link_to '施設を探す', '#', class: 'text-primary font-bold border-b-2 border-primary pb-1 text-label-md' %> <%= link_to '人気ランキング', '#', class:
-        'text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 text-label-md' %>
+        <% is_ranking_active = request.fullpath.include?('average_rating') %>
+        <% is_facilities_active = controller_name == 'facilities' && !is_ranking_active %>
+        <%= link_to '施設を探す', facilities_path,
+              class: is_facilities_active ? 'text-primary font-bold border-b-2 border-primary pb-1 text-label-md' : 'text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 text-label-md pb-1' %>
+        <%= link_to '人気ランキング', facilities_path(q: {s: 'average_rating desc' }),
+              class: is_ranking_active ? 'text-primary font-bold border-b-2 border-primary pb-1 text-label-md' : 'text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 text-label-md pb-1' %>
       </div>
     </div>
     <div class="flex items-center gap-4">
