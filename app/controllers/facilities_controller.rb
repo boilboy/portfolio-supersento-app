@@ -4,7 +4,10 @@ class FacilitiesController < ApplicationController
   FACILITIES_COUNT = 15
 
   def index
-    @facilities = @q.result(distinct: true).with_attached_image.page(params[:page]).per(FACILITIES_COUNT)
+    @facilities = @q.result(distinct: true)
+                    .order(id: :asc)
+                    .with_attached_image.page(params[:page])
+                    .per(FACILITIES_COUNT)
   end
 
   def show
